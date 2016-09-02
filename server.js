@@ -19,6 +19,8 @@ app.post('/', function (req, res) {
     fs.writeFile(filename, content, function (err, data) {
         exec('github-markup '+filename, function (err, out, code) {
             res.send(out);
+
+            fs.unlink(filename);
         }.bind(this));
     }.bind(this));
 
